@@ -1,7 +1,8 @@
   
 ## install
 
-$ npm install https://github.com/PsArvin/react-native-echarts --save 
+$ npm install https://github.com/PsArvin/react-native-echarts --save  
+或者
 $ yarn add https://github.com/PsArvin/react-native-echarts
 
 
