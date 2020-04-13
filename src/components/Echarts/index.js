@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { WebView, View, StyleSheet, Platform } from 'react-native';
+import { View, Platform } from 'react-native';
+import {WebView} from 'react-native-webview';
 import renderChart from './renderChart';
-import echarts from './echarts.min';
 
 export default class App extends Component {
 
@@ -11,7 +11,7 @@ export default class App extends Component {
   }
   
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if(nextProps.option !== this.props.option) {
       this.refs.chart.reload();
     }
@@ -34,7 +34,7 @@ export default class App extends Component {
           }}
           scalesPageToFit={Platform.OS !== 'ios'}
           originWhitelist={['*']}
-          source={require('./tpl.html')}
+          source={Platform.OS == 'ios' ? require('./tpl.html') : { uri: 'file:///android_asset/echarts/tpl.html' }}
           onMessage={event => this.props.onPress ? this.props.onPress(JSON.parse(event.nativeEvent.data)) : null}
         />
       </View>
